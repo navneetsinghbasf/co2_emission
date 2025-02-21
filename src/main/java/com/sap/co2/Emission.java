@@ -1,8 +1,5 @@
 package com.sap.co2;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum Emission {
 
     // Small Cars
@@ -36,14 +33,6 @@ public enum Emission {
         this.emission = emission;
     }
 
-    public double getEmission() {
-        return emission;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
     // Get Emission by Key
     public static Double getEmissionByKey(String key) {
         for (Emission e : Emission.values()) {
@@ -52,5 +41,13 @@ public enum Emission {
             }
         }
         return null; // Return null if key is not found
+    }
+
+    public double getEmission() {
+        return emission;
+    }
+
+    public String getKey() {
+        return key;
     }
 }

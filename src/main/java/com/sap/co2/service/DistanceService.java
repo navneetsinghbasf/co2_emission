@@ -11,11 +11,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.sap.co2.util.AppUtil.ORS_TOKEN;
+
 public class DistanceService {
 
     public double getDistance(String start, String end) throws Exception {
 
-        String apiKey = AppUtil.fetchApiKey();
+        String apiKey = System.getenv(ORS_TOKEN);
         if (apiKey == null) {
             throw new IllegalStateException("ORS_TOKEN environment variable not set.");
         }
@@ -52,9 +54,9 @@ public class DistanceService {
         JsonNode distance = jsonNode.get("distances").get(0).get(1);
 
         if (distance == null) {
-            throw new IOException("Could not calculate distance between " + start +" and "+ end);
+            throw new IOException("Could not calculate distance between " + start + " and " + end);
         }
 
         return distance.asDouble() / 1000;
-}
+    }
 }
